@@ -18,5 +18,5 @@
         }
     }
 
-    echo checkTriangle(1, 10, 1);
+    echo checkTriangle(0, 0, 0);
 ?>
