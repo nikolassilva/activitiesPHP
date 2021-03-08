@@ -23,11 +23,13 @@ class Livro implements Publicacao
     {
         $this->titulo = $titulo;
         $this->autor = $autor;
-        if ($totPaginas > 0) {
+        if ($totPaginas > 0 && is_int($totPaginas)) {
             $this->totPaginas = $totPaginas;
         }
-        if ($pagAtual <= $totPaginas && $pagAtual > 0) {
+        if ($pagAtual <= $totPaginas && $pagAtual > 0 && is_int($pagAtual)) {
             $this->pagAtual = $pagAtual;
+        } else {
+            $this->pagAtual = 'inválida';
         }
         $this->aberto = false;
         $this->leitor = $leitor->getNome();
@@ -62,7 +64,7 @@ class Livro implements Publicacao
      */
     public function folhear($qntdFolhas) 
     {
-        if ($this->aberto) {
+        if ($this->aberto && $this->pagAtual != 'inválida') {
             if ($qntdFolhas + $this->pagAtual <= $this->totPaginas) {
                 $this->pagAtual += $qntdFolhas;
             }
@@ -76,7 +78,7 @@ class Livro implements Publicacao
      */
     public function avancarPag()
     {
-        if ($this->aberto) {
+        if ($this->aberto && $this->pagAtual != 'inválida') {
             if ($this->pagAtual < $this->totPaginas) {
                 $this->pagAtual++;
             }
@@ -90,7 +92,7 @@ class Livro implements Publicacao
      */
     public function voltarPag()
     {
-        if ($this->aberto) {
+        if ($this->aberto && $this->pagAtual != 'inválida') {
             if ($this->pagAtual > 1) {
                 $this->pagAtual--;
             }

@@ -16,7 +16,7 @@ class Pessoa
     {
         $this->nome = $nome;
         $this->sexo = $sexo;
-        if ($idade > 0 ) {
+        if ($idade > 0 && is_int($idade)) {
             $this->idade = $idade;
         }        
     }
